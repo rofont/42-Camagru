@@ -1,26 +1,54 @@
-version: '3.8'
+version: '3.9'
 
 services:
-  web:
-    build: .
-    ports:
-      - "8000:80" # Accès à l'application via http://localhost:8000
-    volumes:
-      - ./src:/var/www/html # Synchroniser les fichiers locaux avec le conteneur
-    depends_on:
-      - db
 
-  db:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: app_db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+  nginx:
+    image: nginx:1.22-alpine
+    container_name: camagru-nginx
     ports:
-      - "3306:3306"
+      - "8080:80"
     volumes:
-      - db-data:/var/lib/mysql
+      - ./app:/var/www/html
+      - ./config/nginx/:/etc/nginx/conf.d
+    depends_on:
+      - php
+    networks:
+      - camagru-network
+
+  php:
+    build: ./config/php
+    container_name: camagru-php
+    volumes:
+      - ./app:/var/www/html
+    networks:
+      - camagru-network
+
+  mysql:
+    image: mysql:8
+    container_name: camagru-mysql
+    env_file:
+      - .env
+    volumes:
+      - camagru_db:/var/lib/mysql
+      - ./config/db-init:/docker-entrypoint-initdb.d
+    networks:
+      - camagru-network
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    env_file:
+      - .env
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+    networks:
+      - camagru-network
 
 volumes:
-  db-data:
+  camagru_db:
+
+
+networks:
+  camagru-network:
+    driver: bridge
