@@ -9,7 +9,7 @@
 <body>
 	<?php
 	$servername = "mysql";
-	$dataname = "datacamagru";
+	$dataname = "camagru_db";
 	$username = "root";
 	$password = "rootpassword";
 
@@ -21,7 +21,7 @@
 		// Vérifier si les données du formulaire ont été soumises
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			// Récupérer et valider les données
-			$name = htmlspecialchars($_POST['name']);
+			$name = htmlspecialchars($_POST['username']);
 			$email = htmlspecialchars($_POST['email']);
 			$password = htmlspecialchars($_POST['password']);
 
@@ -29,8 +29,8 @@
 			$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 			// Insérer les données dans la base de données
-			$stmt = $mysqlClient->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
-			$stmt->bindParam(':name', $name);
+			$stmt = $mysqlClient->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+			$stmt->bindParam(':username', $name);
 			$stmt->bindParam(':email', $email);
 			$stmt->bindParam(':password', $hashedPassword);
 

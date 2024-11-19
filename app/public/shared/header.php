@@ -1,10 +1,22 @@
-<nav id="menu">
-	<div class="element_menu">
-		<h3>Titre menu</h3>
-		<ul>
-			<li><a href="page1.html">Lien</a></li>
-			<li><a href="page2.html">Lien</a></li>
-			<li><a href="page3.html">Lien</a></li>
-		</ul>
+<nav class="navbar sticky-top navbar-expand-lg bg-body-tertiary">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">
+			<img src="/public/images/logoCamagru.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+			Camagru
+		</a>
+		<!-- MENU DU HEADER -->
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+			<ul class="navbar-nav nav-underline">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Inscription</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Connexion</a>
+				</li>
+			</ul>
+		</div>
 	</div>
 </nav>
