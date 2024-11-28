@@ -1,3 +1,5 @@
+<?php require_once(__DIR__ . '/functions.php'); ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -6,12 +8,30 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>42-Camagru</title>
 	<link rel="icon" href="./public/images/favicon.ico" type="image/x-icon">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="styles.css"> -->
 </head>
 
 <body>
-	<?php require_once(__DIR__ . '/public/shared/header.php'); ?>
-	<?php require_once(__DIR__ . '/public/shared/footer.php'); ?>
+	<!-- <form action="" method="POST" class="form">
+		<div class="title">Welcome</div>
+		<div class="subtitle">Let's create your account!</div>
+		<div class="input-container ic1">
+			<input id="username" class="input" type="text" placeholder=" " />
+			<div class="cut"></div>
+			<label for="username" class="placeholder">User Name</label>
+		</div>
+		<div class="input-container ic2">
+			<input id="email" class="input" type="text" placeholder=" " />
+			<div class="cut"></div>
+			<label for="email" class="placeholder">Email</label>
+		</div>
+		<div class="input-container ic2">
+			<input id="password" class="input" type="text" placeholder=" " />
+			<div class="cut"></div>
+			<label for="password" class="placeholder">Password</>
+		</div>
+		<button type="text" class="submit">submit</button>
+	</form> -->
 </body>
 
 </html>

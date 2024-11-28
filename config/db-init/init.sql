@@ -3,20 +3,15 @@ CREATE DATABASE IF NOT EXISTS camagru_db;
 USE camagru_db;
 
 -- CreateTable
-CREATE TABLE IF NOT EXISTS  users (
+CREATE TABLE IF NOT EXISTS users (
 id INT AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(50) NOT NULL UNIQUE,
 email VARCHAR(100) NOT NULL UNIQUE,
 password VARCHAR(255) NOT NULL,
 is_active BOOLEAN DEFAULT 0, -- Pour vérifier l'activation par email
-created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+token VARCHAR(255),
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
--- Insert exemple
-INSERT INTO users (username, email, password, is_active) VALUES
-('Romain', 'roro@gmx.com', 'test1', 1),
-('Thea', 'thea12@gmail.com', 'autretest', 0);
 
 -- CreateTable
 CREATE TABLE IF NOT EXISTS images (
