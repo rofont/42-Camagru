@@ -45,7 +45,6 @@ function readUser($id)
 		$query->execute();
 		$user = $query->fetch();
 		return $user;
-		echo $user['username'];
 	} catch (PDOException $e) {
 		echo 'Erreur de récupération: ' . $e->getMessage();
 		die();
@@ -74,17 +73,25 @@ function updateUser($id, $username, $email, $password, $is_active, $token)
 {
 	try {
 		$con = getDatabaseConnection();
-		$request = "UPDATE users set
-			username = '$username',
-			email = '$email',
-			password = '$password',
-			is_active = '$is_active',
-			token = '$token'
-		where id = '$id'";
+		$request = "UPDATE `users` set
+			username = :username,
+			email = :email,
+			password = :password,
+			is_active = :isactive,
+			token = :token
+		where id = :id";
+
 		$query = $con->prepare($request);
+		$query->bindValue(':id', $id, PDO::PARAM_INT);
+		$query->bindValue(':username', $username, PDO::PARAM_STR);
+		$query->bindValue(':email', $email, PDO::PARAM_STR);
+		$query->bindValue(':password', $password, PDO::PARAM_STR);
+		$query->bindValue(':isactive', $is_active, PDO::PARAM_BOOL);
+		$query->bindValue(':token', $token, PDO::PARAM_STR);
+
 		$query->execute();
 	} catch (PDOException $e) {
-		echo 'Erreur de récupération: ' . $e->getMessage();
+		echo 'Erreur de update: ' . $e->getMessage();
 		die();
 	}
 }
@@ -92,12 +99,15 @@ function updateUser($id, $username, $email, $password, $is_active, $token)
 function deleteUser($id)
 {
 	try {
+
 		$con = getDatabaseConnection();
-		$request = "DELETE from users where id = '$id'";
+		$request = "DELETE FROM `users` WHERE `id` = :id;";
+
 		$query = $con->prepare($request);
+		$query->bindValue(':id', $id, PDO::PARAM_INT);
 		$query->execute();
 	} catch (PDOException $e) {
-		echo 'Erreur de récupération: ' . $e->getMessage();
+		echo 'Erreur de delete: ' . $e->getMessage();
 		die();
 	}
 }

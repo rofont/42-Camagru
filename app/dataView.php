@@ -61,7 +61,7 @@ $users = getAllUsers();
 									<td><?= $user['is_active'] ?></td>
 									<td><?= $user['token'] ?></td>
 									<td><?= $user['created_at'] ?></td>
-									<td><a href="details.php?id=<?= $user['id'] ?>">details</a></td>
+									<td><a href="details.php?id=<?= $user['id'] ?>">details</a> <a href="delete.php?id=<?= $user['id'] ?>">Supprimer</a></td>
 								</tr>
 						<?php
 							}
